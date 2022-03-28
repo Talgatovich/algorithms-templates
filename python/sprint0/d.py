@@ -1,13 +1,18 @@
-from typing import List, Tuple, Optional
+from typing import List, Optional, Tuple
+
 
 def two_sum(arr: List[int], target_sum: int) -> Optional[Tuple[int, int]]:
-    # Здесь реализация вашего решения
-    pass
+    for i in range(0, len(arr)):
+        for j in range(i + 1, len(arr)):
+            if arr[i] + arr[j] == target_sum:
+                return f' Ответ: {arr[i]}, {arr[j]}'
+    return f' Ответ не найден: {None}, {None}'
+
 
 def read_input() -> Tuple[List[int], int]:
-    n = int(input())
-    arr = list(map(int, input().strip().split()))
-    target_sum = int(input())
+    n = int(input("Введите количество фишек "))
+    arr = list(map(int, input("Введите количество очков на каждой из фишек ").strip().split()))
+    target_sum = int(input("Введите загаданное число "))
     return arr, target_sum
 
 def print_result(result: Optional[Tuple[int, int]]) -> None:
