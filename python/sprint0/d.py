@@ -6,7 +6,7 @@ def two_sum(arr: List[int], target_sum: int) -> Optional[Tuple[int, int]]:
         for j in range(i + 1, len(arr)):
             if arr[i] + arr[j] == target_sum:
                 return f' Ответ: {arr[i]}, {arr[j]}'
-    return f' Ответ не найден: {None}, {None}'
+    return f' Ответ не найден: {None}'
 
 
 def read_input() -> Tuple[List[int], int]:
