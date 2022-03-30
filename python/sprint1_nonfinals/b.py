@@ -1,6 +1,16 @@
 def check_parity(a: int, b: int, c: int) -> bool:
-    # Здесь реализация вашего решения
-    pass
+    list = [a, b, c]
+    count = 0    
+    for i in range(3):
+        if list[i] % 2 == 0:
+            count += 1
+        else:
+            count -= 1
+    if count == 3 or count == -3:
+        result = True
+    else:
+        result = False
+    return result
 
 def print_result(result: bool) -> None:
     if result:
