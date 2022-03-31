@@ -13,12 +13,12 @@ def down(matrix, row, col):
     
 
 def right(matrix, row, col):
-    if row < len(matrix) - 1:
-        RIGHT = matrix[row][col + 1]
+    if col < len(matrix[row]) - 1:
+        RIGHT = matrix[row][col+1]
         return RIGHT
 
 def left(matrix, row, col):
-    if row > 0:
+    if col > 0:
         LEFT = matrix[row][col - 1]
         return LEFT
 
@@ -54,11 +54,11 @@ def read_input() -> Tuple[List[List[int]], int, int]:
     return matrix, row, col
 
 
-#matrix, row, col = read_input()
-#print(" ".join(map(str, get_neighbours(matrix, row, col))))
-
-matrix = [[1, 2, 3], [4, 2, 6], [0, 2, 3], [7, 5, 9]]
-row = 3
-col = 0
+matrix, row, col = read_input()
 print(" ".join(map(str, get_neighbours(matrix, row, col))))
+
+#matrix = [[1, 2, 3], [4, 2, 6], [0, 2, 3], [7, 5, 9]]
+#row = 3
+#col = 0
+#print(" ".join(map(str, get_neighbours(matrix, row, col))))
 #print(get_neighbours(matrix, row, col))
