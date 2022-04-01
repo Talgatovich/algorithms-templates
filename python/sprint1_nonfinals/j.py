@@ -3,10 +3,10 @@ from typing import List
 def factorize(n: int) -> List[int]:
     
     list = []
-    while m < 2:
-        m = 0
+    m = 0
+    while m < 2:        
         dev = 2
-        for i in range(2, n):
+        for i in range(2, n//2):
             if n % dev == 0:
                 list.append(dev)
                 m += 1
