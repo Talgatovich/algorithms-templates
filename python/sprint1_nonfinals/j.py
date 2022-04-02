@@ -1,6 +1,7 @@
 from typing import List
 
 
+# Работает правильно, но долго. Необходимо исправить
 def factorize(n: int) -> List[int]:
     f = n
     list = []            
