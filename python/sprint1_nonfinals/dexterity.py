@@ -1,17 +1,18 @@
-# 66752379
+# 66766337
 def check_score(train, k):
+    buttons = k * 2
     deleted = set()
-    dict = {}
+    quantity = {}
     for symb in train:
         if symb != '.' and symb not in deleted:
-            if symb in dict:
-                dict[symb] += 1
-            if symb not in dict:
-                dict[symb] = 1
-            if dict[symb] > k * 2:
+            if symb in quantity:
+                quantity[symb] += 1
+            if symb not in quantity:
+                quantity[symb] = 1
+            if quantity[symb] > buttons:
                 deleted.add(symb)
-                del dict[symb]
-    return len(dict)
+                del quantity[symb]
+    return len(quantity)
 
 
 def unpack(train):
