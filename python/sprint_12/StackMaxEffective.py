@@ -15,6 +15,7 @@ class StackMax:
             print("error")
             return
         last_index = sorted(self.items.keys())[-1]
+        self.deleted.add(self.items[last_index])
         del self.items[last_index]
         print(self.items)
         return
