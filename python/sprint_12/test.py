@@ -1,30 +1,35 @@
+K = -2156489674
 class StackMax:
     def __init__(self):
         self.items = []
         self.indexes = []
-        self.mxm = -2156489674
+        self.mxm = K
         self.index = 0
 
     def push(self, x):
         x = int(x)
-        self.items.append(x)
-        if x > self.mxm:
-            self.indexes.append(self.index)
-            print("MAX INDEXES ", self.indexes)  # DELETE
+        if len(self.items) == 0:
+            self.index = 0
+        if x >= self.mxm:
+            self.indexes.append(self.index)            
             self.mxm = x
-        self.index += 1
-        print("SELF INDEX ", self.index)  # DELETE
-        print("SELF ITEMS ", self.items)  # DELETE
+            
+        self.items.append(x)
+        self.index += 1        
 
     def pop(self):
-        if len(self.items) == 0:
+        if len(self.items) == 0:            
             print("error")
             return
         if self.items[-1] == self.items[self.indexes[-1]]:
-            del self.indexes[-1]
-
+            del self.indexes[-1]            
         del self.items[-1]
-        print("SELF ITEMS ", self.items)  # DELETE
+        if len(self.items) > 0:
+            self.mxm = self.items[self.indexes[-1]]
+            self.index -= 1
+        if len(self.items) == 0:
+            self.mxm = K
+            self.index = 0 
         return
 
     def get_max(self):
@@ -32,9 +37,8 @@ class StackMax:
             print("None")
             return
         max_index = self.indexes[-1]
-        max_val = self.items[max_index]
-        print("MAX VALUE ", max_val)  # DELETE
-        print("MAX INDEX ", max_index)  # DELETE
+        max_val = self.items[max_index]        
+        print(max_val)        
         return
 
 
@@ -58,15 +62,47 @@ def main():
 
 if __name__ == "__main__":
     main()
-# push -4
-# push 10
-# push -8
-# push -6
-# push -10
-# push 0
-# pop
-# push 7
-# get_max
+
+# push 1
 # push 3
-# push -10
+# push 1
+# push 3
+# push 3
+# pop
 # get_max
+# pop
+# get_max
+# pop
+# get_max
+# pop
+# get_max
+# Вывод:
+# 3
+# 3
+# 3
+# 1
+
+input_list = [
+    'get_max',
+    'push -6',
+    'pop',
+    'pop',
+    'get_max',
+    'push 2',
+    'get_max',
+    'pop',
+    'push -2',
+    'push -6'
+]
+
+def read_input2():
+    stack = StackMax()
+    for c in input_list:
+        commands = list(c.strip().split(" "))
+        com = commands[0]
+        f = getattr(stack, com)
+        if len(commands) > 1:
+            val = commands[1]
+            f(val)
+        else:
+            f()
