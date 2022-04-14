@@ -19,13 +19,13 @@ class Node:
         self.val = val
         self.next = next
         self.prev = prev
-        head = None
-        tail = None
-        current_node = None
-        size = 0
+        self.head = None
+        self.tail = None
+        self.current_node = None
+        self.current_size = 0
 
     def get(self):
-        if self.size == 0:
+        if self.current_size == 0:
             print("error")
             return
         next_value = self.head.next
@@ -37,15 +37,41 @@ class Node:
         return
 
     def put(self, x):
-        if self.size == 0:
+        if self.current_size == 0:
             node = Node(x, None, None)
-            self.head.next = x
             self.head = node
             self.current_node = node
             self.size += 1
+            self.tail = node
         else:
             node = Node(x, None, self.current_node)
             self.current_node.next = node
             self.current_node = node
-            self.size += 1
+            self.current_size += 1
         return
+
+    def size(self):
+        print(self.current_size)
+        return
+
+
+def read_input():
+    n = int(input())
+    stack = Node()
+    for _ in range(n):
+        commands = list(input().strip().split(" "))
+        com = commands[0]
+        f = getattr(stack, com)
+        if len(commands) > 1:
+            val = commands[1]
+            f(val)
+        else:
+            f()
+
+
+def main():
+    read_input()
+
+
+if __name__ == "__main__":
+    main()
