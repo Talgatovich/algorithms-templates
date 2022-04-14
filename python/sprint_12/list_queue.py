@@ -19,9 +19,8 @@ class Node:
         self.val = val
         self.next = next
         self.prev = prev
-        self.head = None
-        self.tail = None
-        self.current_node = None
+        self.head = None # Голова        
+        self.current_node = None # Хвост
         self.current_size = 0
 
     def get(self):
@@ -31,9 +30,8 @@ class Node:
         next_value = self.head.next
         print(self.head.val)
         self.head.next = None
-        self.head = next_value
-        self.head.prev = None
-        self.size -= 1
+        self.head = next_value        
+        self.current_size -= 1
         return
 
     def put(self, x):
@@ -41,8 +39,7 @@ class Node:
             node = Node(x, None, None)
             self.head = node
             self.current_node = node
-            self.size += 1
-            self.tail = node
+            self.current_size += 1            
         else:
             node = Node(x, None, self.current_node)
             self.current_node.next = node
