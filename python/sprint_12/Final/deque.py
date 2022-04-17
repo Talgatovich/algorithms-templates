@@ -1,112 +1,81 @@
-# В первой строке записано количество команд n — целое число,
-# не превосходящее 100000. Во второй строке записано число m — максимальный
-# размер дека. Он не превосходит 50000.
-# В следующих n строках записана одна из команд:
-#
-# push_back(value) – добавить элемент в конец дека.
-# Если в деке уже находится максимальное число элементов, вывести «error».
-
-# push_front(value) – добавить элемент в начало дека.
-# Если в деке уже находится максимальное число элементов, вывести «error».
-
-# pop_front() – вывести первый элемент дека и удалить его.
-#  Если дек был пуст, то вывести «error».
-
-# pop_back() – вывести последний элемент дека и удалить его.
-#  Если дек был пуст, то вывести «error».
-
-# Value — целое число, по модулю не превосходящее 1000.
-# Формат вывода
-# Выведите результат выполнения каждой команды на отдельной строке.
-# Для успешных запросов push_back(x) и push_front(x) ничего выводить не надо.
-
-
+# 67479265
 class Deque:
     def __init__(self, m):
-        self.deq = [None] * m
+        self.deque = [None] * m
         self.maximum = m
-
-        self.front_head = 0  # front голова
-        self.front_tail = 0  # front хвост
-
-        self.back_tail = 1  # back хвост
-        self.back_head = 0  # back голова
-
-        self.current_size = 0
+        self.head = 0
+        self.tail = 0
+        self.size = 0
 
     def is_empty(self):
-        return self.current_size == 0
+        return self.size == 0
 
     def is_full(self):
-        return self.current_size >= self.maximum
-
-    def push_front(self, value):
-        if self.is_full():
-            print("error")
-            return
-        if self.current_size != self.maximum:
-            self.deq[self.front_head] = value
-            self.current_size += 1
-            self.front_head = (self.front_head - 1) % self.maximum
-            print("Текущий ДЕК --добавление в начало--", self.deq)  # DELETE
-            print("Обновленная front голова --- ", self.front_head)  # DELETE
-        return
+        return self.size >= self.maximum
 
     def push_back(self, value):
+        """
+        Функция добавления числа в конец дека
+        """
         if self.is_full():
             print("error")
             return
-        if self.current_size != self.maximum:
-            print("Текущий back хвост ---", self.back_tail)  # DELETE
-            self.deq[self.back_tail] = value
-            self.current_size += 1
-            self.back_tail = (self.back_tail + 1) % self.maximum
-            print("Текущий ДЕК --добавление в конец--", self.deq)  # DELETE
-            print("Обновлённый back хвост ---", self.back_tail)  # DELETE
-            print("Обновленная back голова ---", self.back_head)  # DELETE
+        if self.deque[self.tail]:
+            self.tail = (self.tail + 1) % self.maximum
+        self.deque[self.tail] = value
+        self.size += 1
+
+    def push_front(self, value):
+        """
+        Функция добавления числа в начало дека
+        """
+        if self.is_full():
+            print("error")
+            return
+        if self.deque[self.head]:
+            self.head = (self.head - 1) % self.maximum
+        self.deque[self.head] = value
+        self.size += 1
+
+    def pop_back(self):
+        """
+        Функция удаления числа из конца дека
+        """
+        if self.is_empty():
+            print("error")
+            return
+        last_element = self.deque[self.tail]
+        self.deque[self.tail] = None
+        if self.tail != self.head:
+            self.tail = (self.tail - 1) % self.maximum
+        self.size -= 1
+        print(last_element)
         return
 
     def pop_front(self):
+        """
+        Функция удаления числа из начала дека
+        """
         if self.is_empty():
             print("error")
             return
-        first_elem = self.deq[(self.front_head + 1) % self.maximum]
-        self.deq[self.front_head] = None
-        self.front_head = (self.front_head + 1) % self.maximum
-        self.current_size -= 1
-        print(first_elem, "ВЫВОД")
-        print("Текущий ДЕК --удаление из начала--", self.deq)  # DELETE
-        print("Текущая front голова --- ", self.front_head)  # DELETE
-        return
-
-    def pop_back(self):
-        if self.is_empty():
-            print("error")
-            return
-        last_elem = self.deq[(self.back_tail - 1) % self.maximum]
-        self.deq[self.back_tail - 1] = None
-        # if last_elem == None:
-        #    last_elem = self.deq[self.back_head]
-        #    self.deq[self.back_head] = None
-
-        self.back_tail = (self.back_tail - 1) % self.maximum
-        self.current_size -= 1
-        print(last_elem, "ВЫВОД")
-        print("Текущий ДЕК --удаление с конца--", self.deq)  # DELETE
-        print("Текущий back хвост ---", self.back_tail)  # DELETE
-        print("Обновленная back голова ---", self.back_head)  # DELETE
+        first_element = self.deque[self.head]
+        self.deque[self.head] = None
+        if self.head != self.tail:
+            self.head = (self.head + 1) % self.maximum
+        self.size -= 1
+        print(first_element)
         return
 
 
 def read_input():
     n = int(input())  # Количество комманд
     m = int(input())  # максимально допустимый размер очереди
-
-    queue = Deque(m)
+    deque = Deque(m)
     for _ in range(n):
         commands = list(input().strip().split(" "))
         com = commands[0]
-        f = getattr(queue, com)
+        f = getattr(deque, com)
         if len(commands) > 1:
             val = commands[1]
             f(val)
@@ -120,16 +89,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-"""
-4
-4
-push_front 861
-push_front -819
-pop_back
-pop_back
-
-Вывод 
-20
-102
-"""
