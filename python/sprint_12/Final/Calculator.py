@@ -1,7 +1,10 @@
-# 67493867
-symbols = ["+", "-", "*", "/"]
-
-my_dict = {"+": lambda x: x + x}
+# 67524685
+math_operations = {
+    "+": lambda x, y: y + x,
+    "-": lambda x, y: y - x,
+    "*": lambda x, y: y * x,
+    "/": lambda x, y: y // x,
+    }
 
 
 class Stack:
@@ -21,7 +24,7 @@ class Stack:
         try:
             return self.items.pop()
         except IndexError:
-            raise Exception("Стек пуст. Введите как минимум 2 числа")
+            raise IndexError("Стек пуст. Введите как минимум 2 числа")
 
     def calculate(self, commands):
         """
@@ -29,17 +32,10 @@ class Stack:
         обратной польской нотации
         """
         for sign in commands:
-            if sign in symbols:
+            if sign in math_operations.keys():
                 last_digit = self.pop()
                 penultimate_number = self.pop()
-                if sign == symbols[0]:
-                    res = penultimate_number + last_digit
-                if sign == symbols[1]:
-                    res = penultimate_number - last_digit
-                if sign == symbols[2]:
-                    res = penultimate_number * last_digit
-                if sign == symbols[3]:
-                    res = penultimate_number // last_digit
+                res = math_operations[sign](last_digit, penultimate_number)
                 self.push(int(res))
             else:
                 self.push(int(sign))
