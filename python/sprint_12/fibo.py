@@ -1,7 +1,7 @@
 def fibo(n):
     if n < 2:
         return 1
-    result = fibo(n - 1) // 2 + fibo(n - 2) // 2
+    result = fibo(n - 1) + fibo(n - 2)
     return result
 
 
