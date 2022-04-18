@@ -1,6 +1,8 @@
 # 67493867
 symbols = ["+", "-", "*", "/"]
 
+my_dict = {"+": lambda x: x + x}
+
 
 class Stack:
     def __init__(self):
