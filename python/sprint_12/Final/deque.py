@@ -1,4 +1,4 @@
-# 67479265
+# 67493988
 class Deque:
     def __init__(self, m):
         self.deque = [None] * m
@@ -18,8 +18,8 @@ class Deque:
         Функция добавления числа в конец дека
         """
         if self.is_full():
-            print("error")
-            return
+            raise OverflowError
+
         if self.deque[self.tail]:
             self.tail = (self.tail + 1) % self.maximum
         self.deque[self.tail] = value
@@ -30,8 +30,8 @@ class Deque:
         Функция добавления числа в начало дека
         """
         if self.is_full():
-            print("error")
-            return
+            raise OverflowError
+
         if self.deque[self.head]:
             self.head = (self.head - 1) % self.maximum
         self.deque[self.head] = value
@@ -42,8 +42,7 @@ class Deque:
         Функция удаления числа из конца дека
         """
         if self.is_empty():
-            print("error")
-            return
+            raise Exception
         last_element = self.deque[self.tail]
         self.deque[self.tail] = None
         if self.tail != self.head:
@@ -57,8 +56,7 @@ class Deque:
         Функция удаления числа из начала дека
         """
         if self.is_empty():
-            print("error")
-            return
+            raise Exception
         first_element = self.deque[self.head]
         self.deque[self.head] = None
         if self.head != self.tail:
@@ -75,12 +73,18 @@ def read_input():
     for _ in range(n):
         commands = list(input().strip().split(" "))
         com = commands[0]
-        f = getattr(deque, com)
+        function = getattr(deque, com)
         if len(commands) > 1:
             val = commands[1]
-            f(val)
+            try:
+                function(val)
+            except OverflowError:
+                print("error")
         else:
-            f()
+            try:
+                function()
+            except Exception:
+                print("error")
 
 
 def main():

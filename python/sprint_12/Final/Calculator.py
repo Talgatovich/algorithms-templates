@@ -1,46 +1,54 @@
+# 67493867
 class Stack:
     def __init__(self):
         self.items = []
-        self.symbols = ['+', '-', '*', '//']
+        self.symbols = ["+", "-", "*", "/"]
 
     def push(self, item):
+        """
+        Функция добавления числа в стек
+        """
         self.items.append(item)
 
     def pop(self):
+        """
+        Функция удаления элемента из вершины стека
+        """
         return self.items.pop()
 
     def calculate(self, commands):
-        asd = commands.split(' ')
-        for sign in asd:
+        """
+        Функция вычисления значения выражения, записанного в
+        обратной польской нотации
+        """
+        for sign in commands:
             if sign in self.symbols:
-                last_digit = self.items[-1]
-                penultimate_number = self.items[-2]
+                last_digit = self.pop()
+                penultimate_number = self.pop()
                 if sign == self.symbols[0]:
-                    res = last_digit + penultimate_number
+                    res = penultimate_number + last_digit
                 if sign == self.symbols[1]:
-                    res = last_digit - penultimate_number
+                    res = penultimate_number - last_digit
                 if sign == self.symbols[2]:
-                    res = last_digit * penultimate_number
+                    res = penultimate_number * last_digit
                 if sign == self.symbols[3]:
-                    res = last_digit // penultimate_number
+                    res = penultimate_number // last_digit
                 self.push(int(res))
-            else:    
+            else:
                 self.push(int(sign))
-        return self.items
 
-
+        return self.items[-1]
 
 
 def read_input():
-    commands = int(input())
-    a = Stack()    
-    print(a.calculate(commands))
-    return 
+    object = Stack()
+    commands = input().strip().split(" ")
+    print(object.calculate(commands))
 
 
 def main():
     read_input()
 
+
 if __name__ == "__main__":
     main()
-
