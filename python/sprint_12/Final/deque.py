@@ -1,4 +1,4 @@
-# 67524648
+# 67534872
 class Deque:
     def __init__(self, m):
         self.deque = [None] * m
@@ -69,6 +69,11 @@ class Deque:
 def read_input():
     n = int(input())  # Количество комманд
     m = int(input())  # максимально допустимый размер очереди
+    return n, m
+
+
+def main():
+    n, m = read_input()
     deque = Deque(m)
     for _ in range(n):
         commands = list(input().strip().split(" "))
@@ -85,10 +90,6 @@ def read_input():
                 function()
             except Exception:
                 print("error")
-
-
-def main():
-    read_input()
 
 
 if __name__ == "__main__":

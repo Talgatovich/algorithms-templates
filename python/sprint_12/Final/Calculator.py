@@ -1,10 +1,10 @@
-# 67524685
+# 67535071
 math_operations = {
     "+": lambda x, y: y + x,
     "-": lambda x, y: y - x,
     "*": lambda x, y: y * x,
     "/": lambda x, y: y // x,
-    }
+}
 
 
 class Stack:
@@ -34,8 +34,8 @@ class Stack:
         for sign in commands:
             if sign in math_operations.keys():
                 last_digit = self.pop()
-                penultimate_number = self.pop()
-                res = math_operations[sign](last_digit, penultimate_number)
+                penultimate_digit = self.pop()
+                res = math_operations[sign](last_digit, penultimate_digit)
                 self.push(int(res))
             else:
                 self.push(int(sign))
