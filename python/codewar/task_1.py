@@ -9,8 +9,7 @@ def solution(s):
             res.append(words)
         except IndexError:
             words = s[i] + '_'
-            res.append(words)
-                    
+            res.append(words)                    
     return res
 
 
