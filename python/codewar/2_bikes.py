@@ -16,12 +16,19 @@
 """
 
 
-def find_day(arr, x, left, right):    
+def find_day(arr, x, left, right):
     if right <= left:
         return -1
     mid = (left + right) // 2
     if arr[mid] >= x:
-        return mid
+        if arr[mid] == x:
+            return mid + 1
+        else:
+            
+        
+        
+    #elif arr[mid] >= x:
+    #    return mid
     elif x < arr[mid]:
         return find_day(arr, x, left, mid)
     else:
