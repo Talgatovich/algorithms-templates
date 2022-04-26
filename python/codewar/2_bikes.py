@@ -18,40 +18,34 @@
 
 def find_day(arr, x, left, right):
     if right <= left:
-        return -1
-    mid = (left + right) // 2
-    if arr[mid] >= x:
-        if arr[mid] == x:
-            return mid + 1
+        if arr[left] == x:
+            return left + 1
+        elif arr[right] > x:
+            return right + 1
         else:
-            
-        
-        
-    #elif arr[mid] >= x:
-    #    return mid
-    elif x < arr[mid]:
+            return -1
+    mid = (left + right) // 2
+
+    if x < arr[mid] or x == arr[mid]:
         return find_day(arr, x, left, mid)
-    else:
+    elif arr[mid] < x:
         return find_day(arr, x, mid + 1, right)
-    #elif arr[mid] <= x * 2:
-    #    return find_day(arr, x, mid + 1, right)
-    #elif arr[mid] >= x * 2:
-     #   return mid
+
 
 def read_input():
     n = int(input())
     arr = list(map(int, input().strip().split(" ")))
     cost = int(input())
     return n, arr, cost
-  
 
 
 def main():
     n, arr, cost = read_input()
-    a = str(find_day(arr=arr, x=cost, left=0, right=n)) + ' '
+    n = n - 1
+    a = str(find_day(arr=arr, x=cost, left=0, right=n)) + " "
     a += str(find_day(arr=arr, x=cost * 2, left=0, right=n))
     print(a)
-    
+
 
 if __name__ == "__main__":
     main()
