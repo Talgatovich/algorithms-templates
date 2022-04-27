@@ -39,20 +39,18 @@ def get_symbols(N, M=0, prefix=None):
         prefix.pop()
 
 
-# get_symbols(N)
-
-
 def read_input():
     N = [*input()]
-    n = map(int(N))
+    for i in range(len(N)):
+        N[i] = int(N[i])
     return N
 
 
-# def main():
-#    n, control, n1, n2 = read_input()
-#    gen_binary(control, n1, n2, "")
-#
-#
-# if __name__ == "__main__":
-#    main()
-print(read_input())
+def main():
+   N = read_input()
+   get_symbols(N)
+   
+
+if __name__ == "__main__":
+   main()
+
