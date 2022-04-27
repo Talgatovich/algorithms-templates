@@ -26,20 +26,22 @@ my_dict = {
 
 
 def get_symbols(N, M, prefix=None):
-    prefix = prefix or []
-    num = N[M - 1]
-    symbols = my_dict[num]
-    if M == 0:
-        print(*prefix[::-1])
+    if M > len(N) - 1:
+
+        print("".join(prefix), end="  ")
         return
+    prefix = prefix or []
+    num = N[M]
+    symbols = my_dict[num]
+
     for symb in symbols:
         prefix.append(symb)
-        get_symbols(N, M - 1, prefix)
+        get_symbols(N, M + 1, prefix)
         prefix.pop()
 
 
-N = [2, 3, 4]
-M = 2
+N = [2, 3]
+M = 0
 get_symbols(N, M)
 
 
