@@ -25,9 +25,8 @@ my_dict = {
 }
 
 
-def get_symbols(N, M, prefix=None):
+def get_symbols(N, M=0, prefix=None):
     if M > len(N) - 1:
-
         print("".join(prefix), end="  ")
         return
     prefix = prefix or []
@@ -40,19 +39,20 @@ def get_symbols(N, M, prefix=None):
         prefix.pop()
 
 
-N = [2, 3]
-M = 0
-get_symbols(N, M)
+# get_symbols(N)
 
 
-n = 4
-my_dict = {
-    2: "abc",
-    3: "def",
-    4: "ghi",
-    5: "jkl",
-    6: "mno",
-    7: "pqrs",
-    8: "tuv",
-    9: "wxyz",
-}
+def read_input():
+    N = [*input()]
+    n = map(int(N))
+    return N
+
+
+# def main():
+#    n, control, n1, n2 = read_input()
+#    gen_binary(control, n1, n2, "")
+#
+#
+# if __name__ == "__main__":
+#    main()
+print(read_input())
