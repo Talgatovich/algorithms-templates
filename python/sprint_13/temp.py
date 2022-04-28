@@ -1,27 +1,12 @@
-from itertools import *
+def get_symbols(N, M=0, prefix=None):
+    if M > len(N) - 1:
+        print("".join(prefix), end="  ")
+        return
+    prefix = prefix or []
+    num = N[M]
+    symbols = my_dict[num]
 
-
-def get_max(digits):
-    res = []
-    for i in permutations(digits):
-        a = ''.join(i)
-        res.append(int(a))
-    print(res)
-    return max(res)
-
-
-def read_input():
-    n = int(input())
-    digits = input().strip().split()
-    return n, digits
-
-
-def main():
-    n, digits = read_input()
-    print(get_max(digits))
-    
-
-
-if __name__ == "__main__":
-    main()
-
+    for symb in symbols:
+        prefix.append(symb)
+        get_symbols(N, M + 1, prefix)
+        prefix.pop()
