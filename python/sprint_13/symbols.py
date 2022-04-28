@@ -14,7 +14,6 @@
 Выведите все возможные комбинации букв через пробел.
 """
 my_dict = {
-    1: ".,;",
     2: "abc",
     3: "def",
     4: "ghi",
@@ -26,47 +25,31 @@ my_dict = {
 }
 
 
-def get_symbols(n, control, prefix):
-    # print(prefix)
-    numbers = [2, 3, 4]
-    num = numbers[0]
-    add = my_dict[num][n - 3] + my_dict[num][n - 2]
-    if n == 0:
-        print(prefix[::-1])
-    else:
-        get_symbols(
-            n - 1,
-            control + 1,
-            prefix + add + " ",
-        )
+def get_symbols(N, M=0, prefix=None):
+    if M > len(N) - 1:
+        print("".join(prefix), end="  ")
+        return
+    prefix = prefix or []
+    num = N[M]
+    symbols = my_dict[num]
+
+    for symb in symbols:
+        prefix.append(symb)
+        get_symbols(N, M + 1, prefix)
+        prefix.pop()
 
 
-control = 0
-get_symbols(3, control, prefix="")
+def read_input():
+    N = [*input()]
+    for i in range(len(N)):
+        N[i] = int(N[i])
+    return N
 
-numbers = [2, 3, 4]
-n = 4
-my_dict = {
-    2: "abc",
-    3: "def",
-    4: "ghi",
-    5: "jkl",
-    6: "mno",
-    7: "pqrs",
-    8: "tuv",
-    9: "wxyz",
-}
 
-# print(my_dict[numbers[n - 1]][n - 1])
-"""def get_symbols(n, control, prefix):
-    # print(prefix)
-    numbers = [2, 3, 4]
-    num = numbers[0]
-    add = my_dict[num][n - 2] + my_dict[num][n - 1]
-    if n > len(numbers) - 1:
-        print(prefix[::-1])
-    else:
-        get_symbols(
-            n + 1,
-            control - 1,
-            prefix + add + " ","""
+def main():
+    N = read_input()
+    get_symbols(N)
+
+
+if __name__ == "__main__":
+    main()

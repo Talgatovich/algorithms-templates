@@ -27,15 +27,43 @@
 каждой из итераций.
 Если массив был изначально отсортирован, то просто выведите его.
 """
+
+
 def bubble(n, num):
-    for i in range(n-1):
-        for j in range(n-1):            
+    for i in range(1, n):
+        f = 0
+        c = 0
+        for j in range(0, n - i):
             if num[j] > num[j + 1]:
-                num[j],num[j+1] = num[j+1], num[j]            
-        print(num)
-     
-num = [4, 3, 9, 2, 1]   
-print(bubble(5, num))
-            
-    
-    
+                num[j], num[j + 1] = num[j + 1], num[j]
+                f += 1
+            # Для вариантов когда все символы одинаковые или уже упорядочены
+            else:
+                c += 1
+        if c == n - 1:
+            print(*num)
+            break
+        if f == 0:
+            break
+
+        print(*num)
+
+
+def read_input():
+    n = int(input())
+    num = list(map(int, input().strip().split()))
+    return n, num
+
+
+def main():
+    n, num = read_input()
+    bubble(n, num)
+
+
+if __name__ == "__main__":
+    main()
+
+# num = [12, 8, 9, 10, 11]
+# num_2 = [4, 3, 9, 2, 1]
+# bubble(5, num)
+# print(read_input())
