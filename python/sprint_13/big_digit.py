@@ -6,9 +6,10 @@ def get_symbols(digits, M=0, prefix=None):
 
     for i in range(len(digits) - 1):
         prefix.append(digits[i])
-        get_symbols(digits, M + 1, prefix)
+        print(prefix)
+        new_digits = digits[:M] + digits[M:]
+        get_symbols(new_digits, M + 1, prefix)
         prefix.pop()
-
 
 def get_max(n, digits):
     pass
@@ -17,8 +18,6 @@ def get_max(n, digits):
 def read_input():
     n = int(input())
     digits = input().strip().split()
-    # N = list(map(int, input().strip().split()))
-
     return n, digits
 
 
