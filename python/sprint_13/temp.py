@@ -1,6 +1,5 @@
 def merge_sort(array):
-    # заводим массив для результата сортировки
-    result = [None] * len(array)
+    
     if len(array) == 1:  # базовый случай рекурсии
         return array
 
@@ -11,56 +10,32 @@ def merge_sort(array):
     # запускаем сортировку рекурсивно на правой половине
     second_half = array[len(array) // 2 : len(array)]
     right = merge_sort(second_half)
-
+    # заводим массив для результата сортировки
+    result = [None] * len(array)
     # сливаем результаты
     l, r, k = 0, 0, 0
-    while l < len(left) and r < len(right):
-        # выбираем, из какого массива забрать минимальный элемент
-        if left[l] <= right[r]:
-            result[k] = left[l]
-            l += 1
-        else:
-            result[k] = right[r]
-            r += 1
-        k += 1
-
-    # Если один массив закончился раньше, чем второй, то
-    # переносим оставшиеся элементы второго массива в результирующий
-    while l < len(left):
-        result[k] = left[l]  # перенеси оставшиеся элементы left в result
-        l += 1
-        k += 1
-    while r < len(right):
-        result[k] = right[r]  # перенеси оставшиеся элементы right в result
-        r += 1
-        k += 1
-
+    a = max(array[l])
+    b = min(array[r])
+    if a == b:
+        result[k] = a
+    elif a > b:
+        result[k] == 0
+    l += 1
+    r += 1
+    k += 1    
     return result
 
 
-arr = [
-    1,
-    17,
-    25,
-    96,
-    45,
-    22,
-    45,
-    2,
-    3,
-    4,
-    5,
-    10,
-    15,
-    20,
-    30,
-    40,
-    50,
-    60,
-    70,
-    90,
-]
+arr = [[7, 8], [7, 8], [2, 3], [6, 10]]
+arr = sorted(arr)
 print(merge_sort(arr))
+
+
+
+def find(arr):
+    pass
+
+#print(merge_sort(arr))
 first_half = arr[: len(arr) // 2]
 # запускаем сортировку рекурсивно на правой половине
 # second_half = arr[len(arr) // 2 : len(arr)]
