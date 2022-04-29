@@ -1,6 +1,4 @@
 def merge_sort(array):
-    # заводим массив для результата сортировки
-    result = [None] * len(array)
     if len(array) == 1:  # базовый случай рекурсии
         return array
 
@@ -11,6 +9,9 @@ def merge_sort(array):
     # запускаем сортировку рекурсивно на правой половине
     second_half = array[len(array) // 2 : len(array)]
     right = merge_sort(second_half)
+
+    # заводим массив для результата сортировки
+    result = [None] * len(array)
 
     # сливаем результаты
     l, r, k = 0, 0, 0
