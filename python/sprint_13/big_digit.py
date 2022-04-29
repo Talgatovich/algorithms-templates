@@ -1,18 +1,25 @@
-def get_symbols(digits, M=0, prefix=None):
-    if M > len(digits) - 1:
-        print("".join(prefix), end="  ")
-        return
-    prefix = prefix or []
+"""
+Вечером ребята решили поиграть в игру «Большое число».
+Даны числа. Нужно определить, какое самое большое число можно из них составить.
 
-    for i in range(len(digits) - 1):
-        prefix.append(digits[i])
-        print(prefix)
-        new_digits = digits[:M] + digits[M:]
-        get_symbols(new_digits, M + 1, prefix)
-        prefix.pop()
+Формат ввода
+В первой строке записано n — количество чисел. Оно не превосходит 100.
+Во второй строке через пробел записаны n неотрицательных чисел, каждое 
+из которых не превосходит 1000.
 
-def get_max(n, digits):
-    pass
+Формат вывода
+Нужно вывести самое большое число, которое можно составить из данных чисел.
+"""
+
+
+def bubble_sort(n, nums):
+    for i in range(n - 1):
+        for j in range(0, n - i - 1):
+            digit_1 = nums[j] + nums[j + 1]
+            digit_2 = nums[j + 1] + nums[j]
+            if digit_1 < digit_2:
+                nums[j], nums[j + 1] = nums[j + 1], nums[j]
+    return "".join(nums)
 
 
 def read_input():
@@ -22,11 +29,9 @@ def read_input():
 
 
 def main():
-    n, digits = read_input()
-    # get_max(n, digits)
-    get_symbols(digits)
+    n, nums = read_input()
+    print(bubble_sort(n, nums))
 
 
 if __name__ == "__main__":
     main()
-# print("Это ввод -----", read_input())
