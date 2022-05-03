@@ -1,16 +1,30 @@
-def flowerbeds(n, arr):
-    arr.sort()
+def sequense(line_1, line_2):
+    start = -1
+    for word in line_1:
+        start = line_2.find(word, start + 1)
+        if start == -1:
+            return False
+    return True
 
-    newarr=[]
-    start=arr[0][0]
-    end=arr[0][1]
-    for i in range(n-1):
-        if end<arr[i+1][0]:
-            newarr.append('{} {}'.format(start,end))
-            start = arr[i+1][0]
-            end = arr[i+1][1]
-        elif arr[i+1][1]>end:
-            end = arr[i+1][1]
-    newarr.append('{} {}'.format(start,end))
-    
-    return newarr
+            
+
+def read_input():
+    s = input()
+    t = input()
+    return s, t
+
+
+def main():
+    s, t = read_input()
+    print(sequense(s, t))
+
+
+#if __name__ == "__main__":
+#    main()
+
+
+
+
+list1 = 'abcp'
+list2 = 'ahpc'
+print(sequense(list1, list2))

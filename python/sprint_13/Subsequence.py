@@ -1,18 +1,30 @@
-def sequense(list1, list2, count=0):
-    k = 0
-    count = count   
-    for i in range(len(list1)):
-        if i == len(list1) - 1:            
-            return
-        for j in range(len(list2)):
-            if list1[i] == list2[j]:
-                k = j
-                count += 1
-                sequense(list1[i+1:], list2[k+1:], count)
-    if count == len(list1):
-        return True
-    
-list1 = 'abc'
-list2 = 'ahbgdcu'
-print(sequense(list1, list2))
+def sequense(line_1, line_2):
+    start = -1
+    for word in line_1:
+        start = line_2.find(word, start + 1)
+        if start == -1:
+            return False
+    return True
+
             
+
+def read_input():
+    s = input()
+    t = input()
+    return s, t
+
+
+def main():
+    s, t = read_input()
+    print(sequense(s, t))
+
+
+#if __name__ == "__main__":
+#    main()
+
+
+
+
+list1 = 'abcp'
+list2 = 'ahpc'
+print(sequense(list1, list2))
