@@ -75,3 +75,14 @@ result = quick_sort(arr)
 for name in result[::-1]:
     print(name[2])
 print(quick_sort(arr)[::-1])
+
+# ================================================
+arr = [
+    [-200, 10, "tim"],
+    [-200, 10, "tom"],
+    [-30, 20, "art"],
+    [-80, 2, "abzar"],
+]
+arr2 = [["art", 20, -100], ["tom", 20, -100], ["dash", 50, -30]]
+# quick_sort(arr2, 0, 3)
+# print(*(list(zip(*arr2))[2]), sep="\n")
