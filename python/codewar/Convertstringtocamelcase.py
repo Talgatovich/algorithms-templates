@@ -1,13 +1,16 @@
 alphabet = ["-", "_"]
 
 
-def convert_string(string):
-
-    for i in range(len(string) - 1):
-        if string[i] in alphabet:
-            string = string.replace(string[i], "")
-            string = string.replace(string[i + 1], string[i + 1].upper())
-            print(string)
+def to_camel_case(text):
+    l = text.split("-")
+    if len(l) == 1:
+        l = text.split("_")
+    for i in range(len(l)):
+        if i == 0:
+            continue
+        l[i] = l[i].capitalize()
+    res = "".join(l)
+    return res
 
 
 def read_input():
@@ -17,16 +20,16 @@ def read_input():
 
 def main():
     string = read_input()
-    return convert_string(string)
+    return to_camel_case(string)
 
 
 def test():
     a = "the_stealth_warrior"
     b = "theStealthWarrior"
-    print("Right!" if convert_string(a) == b else "Wrong!")
+    print("Right!" if to_camel_case(a) == b else "Wrong!")
     c = "The-Stealth-Warrior"
     d = "TheStealthWarrior"
-    print("Right!" if convert_string(c) == d else "Wrong!")
+    print("Right!" if to_camel_case(c) == d else "Wrong!")
 
 
 if __name__ == "__main__":
